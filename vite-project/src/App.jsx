@@ -7,6 +7,10 @@ import City from "./components/City";
 import Address from "./components/Address";
 import Pet from "./components/Pet";
 import Greeting from "./components/Greeting";
+import FullName from "./components/Fullname";
+import CallOut from "./components/CallOut";
+import MoviesList from "./components/MoviesList";
+import BigCats from "./components/BigCats";
 
 function ExampleComponent() {
   return (
@@ -81,33 +85,24 @@ function App() {
       <Welcome name="students">
         <p>Children of Welcome</p>
       </Welcome>
-
       {/* Renders the component with no props */}
       <PropsDisplayer />
-
       {/* Renders the component with a single prop 'myProp' */}
       <PropsDisplayer myProp="first prop" />
-
       {/* Renders the component with multiple props - add your own! */}
       <PropsDisplayer prop1="first" prop2="second" prop3={3} prop4="4" />
       {/* String prop value uses quotes, numeric prop value uses
        curly braces */}
       <PropsDisplayer name="Harry Styles" age={29} />
-
       {/* Array prop value - uses curly braces */}
       <PropsDisplayer pets={["cat", "dog", "goldfish"]} />
-
       {/* state and country are not specified, will use defaults */}
       <City name="Sydney" />
-
       {/* country is not specified, will use default */}
       <City name="Melbourne" state="VIC" />
-
       {/* all values are specified, won't use defaults */}
       <City name="Chicago" state="Illinois" country="USA" />
-
       <Address streetAddress={"29 Sussex Street"} suburb={"Grey Lynn"} />
-
       {/* Everything in between <City> and </City> is passed as
 props.children */}
       <City name="Newcastle">
@@ -136,9 +131,20 @@ props.children */}
         weight="65"
         hungry={true}
       />
-      <Greeting name="George">I hope you are getting the hang of react</Greeting>
+      <Greeting name="George">
+        I hope you are getting the hang of react
+      </Greeting>
+
+      <FullName first="George" middle="Denton" last="Sproat" />
+
+      <CallOut title="Nested React Component" message="My Fancy Green Border">
+        <FullName first="Elon " last=" Musk" />
+      </CallOut>
+
+      <MoviesList />
+
+      <BigCats />
     </>
   );
 }
-
 export default App;
