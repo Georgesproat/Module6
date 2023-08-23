@@ -11,6 +11,10 @@ import FullName from "./components/Fullname";
 import CallOut from "./components/CallOut";
 import MoviesList from "./components/MoviesList";
 import BigCats from "./components/BigCats";
+import MoodChanger from "./components/MoodChanger";
+import BirthdayTranslator from "./components/BirthdayTranslator";
+import Weather from "./components/Weather";
+import Emoji from "./components/Emoji";
 
 function ExampleComponent() {
   return (
@@ -144,6 +148,14 @@ props.children */}
       <MoviesList />
 
       <BigCats />
+
+      <MoodChanger/>
+
+      <BirthdayTranslator/>
+
+      <Weather/>
+
+      <Emoji/>
     </>
   );
 }

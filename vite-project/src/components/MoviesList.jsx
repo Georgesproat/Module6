@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 function Movie({ title, year, synopsis }) {
   return (
     <li>
@@ -26,19 +28,55 @@ function MoviesList() {
       title: "Interstellar",
       year: 2014,
       synopsis: "Explorers travel through a wormhole in space."
+    },
+    {
+      id: 4,
+      title: "Whiplash",
+      year: 2015,
+      synopsis: "A Jazz drummer has a tough teacher"
     }
   ];
 
-  const movieItems = movies.map((movie) => (
+  const [currentMovies, setCurrentMovies] = useState(movies);
+
+  const movieItems = currentMovies.map((movie) => (
     <Movie
       key={movie.id}
       title={movie.title}
       year={movie.year}
       synopsis={movie.synopsis}
-      id={movie.id}
-    ></Movie>
+    />
   ));
 
-  return <div className="MoviesList">{movieItems}</div>;
+  const handleReverseMovies = () => {
+    // first clone the original, so we don’t mutate it
+    let newMovies = [...currentMovies];
+    newMovies.reverse(); // 2. modify the clone
+    setCurrentMovies(newMovies); // 3. set updated clone in state
+  };
+
+  const handleSortMoviesTitle = () => {
+    // first clone the original, so we don’t mutate it
+    let newMovies = [...currentMovies];
+    newMovies.sort((movie1, movie2) => {
+      if (movie1.title === movie2.title) return 0;
+      else if (movie1.title > movie2.title) return 1;
+      else return -1;
+    }); // 2. modify the clone
+    setCurrentMovies(newMovies); // 3. set updated clone in state
+  };
+
+
+  return (
+    <div className="MoviesList componentBox">
+      <ul>{movieItems}</ul>
+      <button onClick={handleReverseMovies}>Reverse List</button>
+      <button onClick={handleSortMoviesTitle}>Sort by title</button>
+    </div>
+  );
 }
+
 export default MoviesList;
+
+// ++ Try extracting a SortButton component to replace the above
+

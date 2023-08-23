@@ -1,4 +1,5 @@
 import SingleCat from "./SingleCat";
+import { useState } from "react";
 
 const cats = [
   {
@@ -46,13 +47,46 @@ const cats = [
 ];
 
 function BigCats() {
+  const [catList, setCatList] = useState(cats);
+
+  const handleSortAlphabetically = () => {
+    const sortedCats = [...catList].sort((a, b) =>
+      a.name.localeCompare(b.name)
+    );
+    setCatList(sortedCats);
+  };
+
+  const handleReverseList = () => {
+    const reversedCats = [...catList].reverse();
+    setCatList(reversedCats);
+  };
+
+  const handleFilterPanthera = () => {
+    const pantheraCats = cats.filter((cat) =>
+      cat.latinName.startsWith("Panthera")
+    );
+    setCatList(pantheraCats);
+  };
+
+  const handleResetList = () => {
+    setCatList(cats);
+  };
+
   return (
     <div className="big-cats">
-      {cats.map((cat, index) => (
+      <div className="controls">
+        <button onClick={handleSortAlphabetically}>Sort Alphabetically</button>
+        <button onClick={handleReverseList}>Reverse List</button>
+        <button onClick={handleFilterPanthera}>Filter Panthera Family</button>
+        <button onClick={handleResetList}>Reset List</button>
+      </div>
+
+      {catList.map((cat, index) => (
         <SingleCat key={index} cat={cat} />
       ))}
     </div>
   );
 }
+
 
 export default BigCats;
