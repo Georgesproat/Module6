@@ -8,6 +8,8 @@ import Address from "./components/Address";
 import Pet from "./components/Pet";
 import Greeting from "./components/Greeting";
 import FullName from "./components/Fullname";
+import ComplexComment from "./components/ComplexComment";
+import Comment from "./components/Comment";
 import CallOut from "./components/CallOut";
 import MoviesList from "./components/MoviesList";
 import BigCats from "./components/BigCats";
@@ -15,6 +17,8 @@ import MoodChanger from "./components/MoodChanger";
 import BirthdayTranslator from "./components/BirthdayTranslator";
 import Weather from "./components/Weather";
 import Emoji from "./components/Emoji";
+import LoginForm from "./components/logInForm";
+import ExplodingBomb from "./components/ExplodingBomb";
 
 function ExampleComponent() {
   return (
@@ -26,12 +30,10 @@ function ExampleComponent() {
 }
 
 function Welcome(props) {
-  // custom Welcome component
   return (
     <div className="Welcome componentBox">
-      {/* if the 'name' prop exists, render it on the screen */}
       <h3>Welcome {props.name}!</h3>
-      {/* if this component has children, render them here */}
+
       {props.children}
     </div>
   );
@@ -39,6 +41,7 @@ function Welcome(props) {
 
 function App() {
   const [count, setCount] = useState(0);
+
   const whatIsJSX = (
     <div>
       <p>Is it JavaScript?</p>
@@ -60,6 +63,15 @@ function App() {
       <cite>{spiderman.alterEgo}</cite>
     </div>
   );
+
+  const comment = {
+    date: new Date(),
+    text: "I hope you enjoy learning React!",
+    author: {
+      name: "Hello Kitty",
+      avatarUrl: "https://placekitten.com/g/64/64"
+    }
+  };
 
   return (
     <>
@@ -84,31 +96,32 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
       {whatIsJSX}
+
       {spideyJSX}
+
       <ExampleComponent />
       <Welcome name="students">
+        {" "}
         <p>Children of Welcome</p>
       </Welcome>
-      {/* Renders the component with no props */}
+
       <PropsDisplayer />
-      {/* Renders the component with a single prop 'myProp' */}
+
       <PropsDisplayer myProp="first prop" />
-      {/* Renders the component with multiple props - add your own! */}
+
       <PropsDisplayer prop1="first" prop2="second" prop3={3} prop4="4" />
-      {/* String prop value uses quotes, numeric prop value uses
-       curly braces */}
+
       <PropsDisplayer name="Harry Styles" age={29} />
-      {/* Array prop value - uses curly braces */}
+
       <PropsDisplayer pets={["cat", "dog", "goldfish"]} />
-      {/* state and country are not specified, will use defaults */}
+
       <City name="Sydney" />
-      {/* country is not specified, will use default */}
+
       <City name="Melbourne" state="VIC" />
-      {/* all values are specified, won't use defaults */}
+
       <City name="Chicago" state="Illinois" country="USA" />
       <Address streetAddress={"29 Sussex Street"} suburb={"Grey Lynn"} />
-      {/* Everything in between <City> and </City> is passed as
-props.children */}
+
       <City name="Newcastle">
         <div>
           Newcastle is a harbour city in the Australian state of New South
@@ -141,6 +154,12 @@ props.children */}
 
       <FullName first="George" middle="Denton" last="Sproat" />
 
+      <Comment
+        author={comment.author}
+        date={comment.date}
+        text={comment.text}
+      />
+
       <CallOut title="Nested React Component" message="My Fancy Green Border">
         <FullName first="Elon " last=" Musk" />
       </CallOut>
@@ -149,13 +168,17 @@ props.children */}
 
       <BigCats />
 
-      <MoodChanger/>
+      <MoodChanger />
 
-      <BirthdayTranslator/>
+      <BirthdayTranslator />
 
-      <Weather/>
+      <Weather />
 
-      <Emoji/>
+      <Emoji />
+
+      <LoginForm />
+
+      <ExplodingBomb />
     </>
   );
 }
