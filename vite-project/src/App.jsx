@@ -19,6 +19,7 @@ import Weather from "./components/Weather";
 import Emoji from "./components/Emoji";
 import LoginForm from "./components/logInForm";
 import ExplodingBomb from "./components/ExplodingBomb";
+import Calculator from "./components/Calculator";
 
 function ExampleComponent() {
   return (
@@ -179,6 +180,8 @@ function App() {
       <LoginForm />
 
       <ExplodingBomb />
+
+      <Calculator />
     </>
   );
 }
